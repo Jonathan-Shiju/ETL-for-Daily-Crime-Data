@@ -1,0 +1,30 @@
+extractor_task:
+  description: >
+    Procure XML Data from Popular RSS Feeds with the below URLs;
+    {URLs}. Follow a perfect method of extracting articles from each 
+    Feed and parsing into a JSON Object corresponding to a single task.
+    Use the tool feed_parser.
+  expected_output: >
+    An array of JSON Objects of different Crime related Articles
+  agent: extractor_agent
+
+transformer_task:
+  description: >
+    Convert JSON Objects with XML Data into a structured format with the following 
+    fields: Title, Involved Parties, Date of Incident, Location of Incident, Severity of Crime,
+    Image(URL), Additional Links. Do not add your opinion, make sure to preserve the information
+    within the XML Data. If the XML Data does not include any of the above field, write as None
+  expected_output: >
+    A set of JSON Objects which include multiple fields mentioned. 
+  agent: transformer_agent
+
+
+loader_task:
+  description: >
+    Load JSON Objects, with each object having fields: Title, Involved Parties, Date of Incident, 
+    Location of Incident, Severity of Crime, Image(URL), Additional Links; into PostgreSQL using
+    the tool load_db. While calling the total mention all of the above fields to be inserted into the 
+    database. 
+  expected_output: >
+    Inserted acknowledgment of data into PostgreSQL.
+  agent: loader_agent
